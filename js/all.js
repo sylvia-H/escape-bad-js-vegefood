@@ -16,13 +16,13 @@ function renderData(originData) {
     </tr>`;
     str += content;
   });
-  return str;
+  table.innerHTML = str;
 }
-// eslint-disable-next-line no-undef
+/* global axios */
 axios.get(url)
   .then((res) => {
     data = res.data.filter((el) => el.作物名稱);
-    table.innerHTML = renderData(data);
+    renderData(data);
   });
 
 let showData = [];
@@ -33,7 +33,7 @@ function filterCategory(e) {
   if (e.target.nodeName === 'BUTTON') {
     category = e.target.dataset.category;
     showData = data.filter((i) => i.種類代碼 === category);
-    table.innerHTML = renderData(showData);
+    renderData(showData);
   }
 }
 
